@@ -1,0 +1,48 @@
+﻿@page
+@model WebApp.Pages.Orden.EditModel
+@{
+    ViewData["Title"] = "Editar Orden";
+}
+
+<div id="AppEdit" class="container" data-entity="@JsonSerializer.Serialize(Model.Entity)" v-cloak>
+    <div class="card">
+        <div class="card-header">
+            @(Model.id.HasValue? "Actualizar": "Nueva Orden")
+        </div>
+        <div class="card-body">
+            <form id="FormEdit" method="post">
+                <input type="hidden" asp-for="Entity.IdOrden" v-model="Entity.IdOrden" />
+
+                <div class="form-group mb-3">
+                    <label for="Entity.IdProducto" class="form-label">Producto</label>
+                    <select asp-for="Entity.IdProducto" class="form-select" v-model="Entity.IdProducto"
+                            asp-items="@(new SelectList(Model.ProductoLista,"IdProducto","NombreProducto","PrecioProducto"))" required>
+                    </select>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="Entity.CantidadProducto" class="form-label">Cantidad Producto</label>
+                    <input type="text" class="form-control" asp-for="Entity.CantidadProducto" v-model="Entity.CantidadProducto" maxlength="25" required>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="Entity.Estado" class="form-label">Estado</label>
+                    <input type="text" class="form-control" asp-for="Entity.Estado" v-model="Entity.Estado" maxlength="50" required>
+                </div>
+
+                <div class="row">
+                    <div class="col-4">
+                        <button type="button" @@click="Save" class="btn btn-primary">
+                            @(Model.id.HasValue? "Actualizar": "Agregar")
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script defer src="~/App/Orden/Edit.js"></script>
+}
