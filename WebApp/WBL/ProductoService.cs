@@ -43,7 +43,6 @@ namespace WBL
 
         public async Task<IEnumerable<ProductoEntity>> GetLista()
         {
-
             try
             {
                 var result = sql.QueryAsync<ProductoEntity>("dbo.ProductoLista");
@@ -78,8 +77,9 @@ namespace WBL
             {
                 var result = sql.ExecuteAsync("dbo.ProductoInsertar", new
                 {
-                    entity.Categoria,
+                    entity.IdCategoria,
                     entity.NombreProducto,
+                    entity.Precio,
                     entity.Cantidad_Disponible,
                     entity.Caracteristicas,
                     entity.Estado
@@ -97,11 +97,12 @@ namespace WBL
         {
             try
             {
-                var result = sql.ExecuteAsync("exp.EmpleadoActualizar", new
+                var result = sql.ExecuteAsync("dbo.ProductoActualizar", new
                 {
                     entity.IdProducto,
-                    entity.Categoria,
+                    entity.IdCategoria,
                     entity.NombreProducto,
+                    entity.Precio,
                     entity.Cantidad_Disponible,
                     entity.Caracteristicas,
                     entity.Estado
