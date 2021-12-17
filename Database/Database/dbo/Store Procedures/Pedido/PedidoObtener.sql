@@ -4,17 +4,16 @@ AS BEGIN
   SET NOCOUNT ON
 
   SELECT 
-     PE.IdPedido, PE.IdCliente, PE.FechaPedido, DE.IdProducto,
-     DE.Cantidad, PR.Precio AS PrecioUnitario, (DE.Cantidad * PR.Precio) AS PrecioTotal, 
-     DE.Envio, DE.Envio +(DE.Cantidad * PR.Precio) AS SubTotal,
-     DE.Envio +((DE.Cantidad * PR.Precio)*0.13) AS IVA, 
-     (DE.Envio +(DE.Cantidad * PR.Precio)+(DE.Envio +((DE.Cantidad * PR.Precio)*0.13))) AS Total,
+  --Encabezado--
+  PE.IdPedido, PE.FechaPedido,
+  --Cliente--
+     C.Cedula, C.NombreCliente, C.Apellidos, C.Telefono,
      --Producto--
-     PR.IdProducto, PR.IdCategoria, PR.NombreProducto, 
-     PR.Cantidad_Disponible, PR.Caracteristicas, PR.Estado,
-     --Cliente--
-     C.Cedula, C.NombreCliente, C.Apellidos, C.Direccion,
-     C.Fecha_Nacimiento, C.Telefono
+     PR.IdProducto, PR.NombreProducto, DE.Cantidad,
+     PR.Precio AS PrecioUnitario, (DE.Cantidad * PR.Precio) AS PrecioTotal, 
+     DE.Envio, DE.Envio +(DE.Cantidad * PR.Precio) AS SubTotal,
+     (DE.Envio +(DE.Cantidad * PR.Precio))*0.13 AS IVA, 
+     (DE.Envio +(DE.Cantidad * PR.Precio)+(DE.Envio +(DE.Cantidad * PR.Precio))*0.13) AS Total
      --Joins--
     FROM dbo.Pedido PE
     INNER JOIN dbo.PedidoDetalle DE

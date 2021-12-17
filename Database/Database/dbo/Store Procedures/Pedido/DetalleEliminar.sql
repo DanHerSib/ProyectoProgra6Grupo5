@@ -1,17 +1,20 @@
 ﻿CREATE PROCEDURE [dbo].[DetalleEliminar]
- @IdPedido int,
- @IdProducto int,
- @Cantidad int
+ @IdPedido int
 AS BEGIN
 SET NOCOUNT ON
   BEGIN TRANSACTION TRASA
     BEGIN TRY
-            DELETE FROM dbo.PedidoDetalle WHERE IdPedido=@IdPedido
+	--Devolver producto--
+			DECLARE @DevolverCantidad int =(SELECT Cantidad FROM dbo.PedidoDetalle);
+			DECLARE @IdProducto int =(SELECT IdProducto FROM dbo.PedidoDetalle);
+			DECLARE @Cantidad_Disponible int =(SELECT Cantidad_Disponible FROM dbo.Producto);
 			--Update Products--
 			UPDATE dbo.Producto SET 
-			Cantidad_Disponible = dbo.Producto.Cantidad_Disponible+@Cantidad
+			Cantidad_Disponible = @Cantidad_Disponible + @DevolverCantidad
 			WHERE 
-			IdProducto=@IdProducto
+			dbo.Producto.IdProducto=@IdProducto
+			--Delete detail--
+            DELETE FROM dbo.PedidoDetalle WHERE dbo.PedidoDetalle.IdPedido=@IdPedido
 	  COMMIT TRANSACTION TRASA
 	  SELECT 0 AS CodeError, '' AS MsgError
   END TRY

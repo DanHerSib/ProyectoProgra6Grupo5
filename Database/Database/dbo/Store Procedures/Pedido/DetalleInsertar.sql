@@ -16,9 +16,9 @@ SET NOCOUNT ON
 	(@IdPedido, @IdProducto, @Cantidad, @Envio)
 	--Update Products--
 	UPDATE dbo.Producto SET 
-			Cantidad_Disponible = dbo.Producto.Cantidad_Disponible-@Cantidad
+			Cantidad_Disponible = @Cantidad_Disponible - @Cantidad
 			WHERE 
-			IdProducto=@IdProducto
+			dbo.Producto.IdProducto=@IdProducto
   COMMIT TRANSACTION TRASA
   SELECT 0 AS CodeError, '' AS MsgError
   END TRY 
