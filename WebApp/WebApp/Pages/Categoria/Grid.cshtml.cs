@@ -1,23 +1,22 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Entity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using WBL;
-using Entity;
 
 namespace WebApp.Pages.Categoria
 {
     public class GridModel : PageModel
     {
         private readonly ICategoriaService categoriaService;
-        public GridModel(ICategoriaService categoriaService)
+        public GridModel(ICategoriaService CategoriaService)
         {
-            this.categoriaService = categoriaService;
+            this.categoriaService = CategoriaService;
         }
-
         public IEnumerable<CategoriaEntity> GridList { get; set; } = new List<CategoriaEntity>();
+        //Get method
         public async Task<IActionResult> OnGet()
         {
             try
@@ -30,7 +29,7 @@ namespace WebApp.Pages.Categoria
                 return Content(ex.Message);
             }
         }
-
+        //Delete Method
         public async Task<IActionResult> OnDeleteEliminar(int id)
         {
             try

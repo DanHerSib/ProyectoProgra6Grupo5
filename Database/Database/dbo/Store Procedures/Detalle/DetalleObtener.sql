@@ -1,9 +1,10 @@
 ﻿CREATE PROCEDURE [dbo].[DetalleObtener]
-   @IdPedido int= NULL
+   @IdDetalle int= NULL
 AS BEGIN
   SET NOCOUNT ON
 
   SELECT 
+  DE.IdDetalle,
   --Encabezado--
   DE.IdPedido,
      --Producto--
@@ -19,5 +20,5 @@ AS BEGIN
     INNER JOIN dbo.Producto PR
        ON DE.IdProducto = PR.IdProducto
     WHERE
-    (@IdPedido IS NULL OR DE.IdPedido = @IdPedido)
+    (@IdDetalle IS NULL OR IdDetalle = @IdDetalle)
 END

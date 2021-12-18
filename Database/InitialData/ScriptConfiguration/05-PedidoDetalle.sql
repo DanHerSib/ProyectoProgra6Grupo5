@@ -1,32 +1,32 @@
 ﻿DROP TABLE IF EXISTS #PedidoDetalleTemp
 
 SELECT 
-IdPedido, IdProducto, Cantidad, Envio INTO #PedidoDetalleTemp
+IdDetalle,IdPedido, IdProducto, Cantidad, Envio INTO #PedidoDetalleTemp
 FROM (
 VALUES
-(1, 2, 10, 2000),
-(2, 3, 5, 1000),
-(3, 1, 1, 3000),
-(3, 2, 10, 2000),
-(2, 1, 5, 3000)
-)AS TEMP (IdPedido, IdProducto, Cantidad, Envio)
+(1,1, 2, 10, 2000),
+(2,2, 3, 5, 1000),
+(3,3, 1, 1, 3000),
+(4,3, 2, 10, 2000),
+(5,2, 1, 5, 3000)
+)AS TEMP (IdDetalle, IdPedido, IdProducto, Cantidad, Envio)
 
 ----ACTUALIZAR DATOS---
 UPDATE P SET
-	P.IdProducto=TM.IdProducto, P.Cantidad=TM.Cantidad,P.Envio=TM.Envio
+	P.IdPedido=TM.IdPedido,P.IdProducto=TM.IdProducto, P.Cantidad=TM.Cantidad,P.Envio=TM.Envio
 FROM dbo.PedidoDetalle P
 INNER JOIN #PedidoDetalleTemp TM
-    ON P.IdPedido= TM.IdPedido  
+    ON P.IdDetalle= TM.IdDetalle  
     
 ----INSERTAR DATOS---
 INSERT INTO dbo.PedidoDetalle(
-IdPedido, IdProducto, Cantidad, Envio)
+IdDetalle, IdPedido, IdProducto, Cantidad, Envio)
 SELECT
-IdPedido, IdProducto, Cantidad, Envio
+IdDetalle, IdPedido, IdProducto, Cantidad, Envio
 FROM #PedidoDetalleTemp
 
 EXCEPT
 SELECT
-IdPedido, IdProducto, Cantidad, Envio
+IdDetalle, IdPedido, IdProducto, Cantidad, Envio
 FROM dbo.PedidoDetalle
 GO

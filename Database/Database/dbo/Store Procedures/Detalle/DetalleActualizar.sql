@@ -1,4 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[DetalleActualizar]
+	@IdDetalle int,
 	@IdPedido int, 
 	@IdProducto int,
     @Cantidad int,
@@ -9,10 +10,10 @@ SET NOCOUNT ON
   BEGIN TRANSACTION TRASA
     BEGIN TRY
 	UPDATE dbo.PedidoDetalle SET 
-	 IdProducto=@IdProducto, Cantidad=@Cantidad, 
+	 IdPedido=@IdPedido,IdProducto=@IdProducto, Cantidad=@Cantidad, 
 	 Envio=@Envio
 	WHERE 
-	       IdPedido=@IdPedido
+	       IdDetalle=@IdDetalle
 	  COMMIT TRANSACTION TRASA
 	  SELECT 0 AS CodeError, '' AS MsgError
   END TRY

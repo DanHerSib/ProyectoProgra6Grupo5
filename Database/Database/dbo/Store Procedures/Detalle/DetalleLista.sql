@@ -3,6 +3,6 @@ AS
 	BEGIN
 	SET NOCOUNT ON
 	SELECT
-	 IdPedido, IdProducto, Cantidad, Envio
+	 IdDetalle, IdPedido, IdProducto, Cantidad, Envio
 	FROM PedidoDetalle
 END

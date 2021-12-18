@@ -17,14 +17,15 @@ namespace WebApp.Pages.Categoria
             this.categoriaService = categoriaService;
         }
 
+        [BindProperty]
+        [FromBody]
         public CategoriaEntity Entity { get; set; } = new CategoriaEntity();
-
+        [BindProperty(SupportsGet = true)]
         public int? id { get; set; }
         public async Task<IActionResult> OnGet()
         {
             try
             {
-              
                 if (id.HasValue)
                 {
                     Entity = await categoriaService.GetById(new() { IdCategoria = id });

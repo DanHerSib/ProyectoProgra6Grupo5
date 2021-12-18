@@ -1,5 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[DetalleEliminar]
- @IdPedido int
+ @IdDetalle int
 AS BEGIN
 SET NOCOUNT ON
   BEGIN TRANSACTION TRASA
@@ -14,7 +14,7 @@ SET NOCOUNT ON
 			WHERE 
 			dbo.Producto.IdProducto=@IdProducto
 			--Delete detail--
-            DELETE FROM dbo.PedidoDetalle WHERE dbo.PedidoDetalle.IdPedido=@IdPedido
+            DELETE FROM dbo.PedidoDetalle WHERE dbo.PedidoDetalle.IdDetalle=@IdDetalle
 	  COMMIT TRANSACTION TRASA
 	  SELECT 0 AS CodeError, '' AS MsgError
   END TRY

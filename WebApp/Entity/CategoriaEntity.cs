@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Entity
 {
-    public class CategoriaEntity : DBEntity
+    public class CategoriaEntity
     {
         public int? IdCategoria { get; set; }
         public string Descripcion { get; set; }

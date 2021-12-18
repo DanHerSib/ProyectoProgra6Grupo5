@@ -12,9 +12,9 @@ namespace WebApp.Pages.Cliente
     public class GridModel : PageModel
     {
         private readonly IClienteService clienteService;
-        public GridModel(IClienteService clienteService)
+        public GridModel(IClienteService ClienteService)
         {
-            this.clienteService = clienteService;
+            this.clienteService = ClienteService;
         }
 
         public IEnumerable<ClienteEntity> GridList { get; set; } = new List<ClienteEntity>();

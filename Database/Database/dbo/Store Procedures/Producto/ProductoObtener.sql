@@ -4,13 +4,16 @@ AS BEGIN
   SET NOCOUNT ON
   SELECT 
      E.IdProducto,
-     E.IdCategoria,
      E.NombreProducto,
      E.Precio,
      E.Cantidad_Disponible,
      E.Caracteristicas,
-     E.Estado
+     E.Estado,
+     --Categoria--
+     Cat.IdCategoria
     FROM dbo.Producto E
+    INNER JOIN Categoria Cat
+    ON E.IdCategoria = Cat.IdCategoria
     WHERE
 		   (@IdProducto IS NULL OR IdProducto=@IdProducto)
 END
