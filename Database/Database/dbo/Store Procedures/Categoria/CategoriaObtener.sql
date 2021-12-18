@@ -3,6 +3,7 @@
 AS BEGIN
   SET NOCOUNT ON
   SELECT 
+     E.IdCategoria,
      E.Descripcion
     FROM dbo.Categoria E
     WHERE
