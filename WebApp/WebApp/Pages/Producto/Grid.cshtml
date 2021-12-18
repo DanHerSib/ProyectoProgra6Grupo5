@@ -3,7 +3,6 @@
 @{
 }
 
-
 <div class="container-fluid">
 
     <div class="card">
@@ -24,6 +23,7 @@
                                 <th>ID</th>
                                 <th>Categoria</th>
                                 <th>Nombre Producto</th>
+                                <th>Precio</th>
                                 <th>Cantidad Disponible</th>
                                 <th>Caracteristicas</th>
                                 <th>Estado</th>
@@ -34,8 +34,9 @@
                             {
                             <tr>
                                 <td>@item.IdProducto</td>
-                                <td>@item.Categoria</td>
+                                <td>@item.IdCategoria</td>
                                 <td>@item.NombreProducto</td>
+                                <td>@item.Precio</td>
                                 <td>@item.Cantidad_Disponible</td>
                                 <td>@item.Caracteristicas</td>
                                 <td>@item.Estado</td>
@@ -63,11 +64,8 @@
 </div>
 
 @section Scripts{
-
     <script>
         var MensajeApp = "@Html.Raw(Model.Mensaje)";
     </script>
-
     <script defer src="~/App/Producto/Grid.js"></script>
-
 }

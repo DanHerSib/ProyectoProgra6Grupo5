@@ -1,10 +1,10 @@
-﻿namespace OrdenGrid {
+﻿namespace CategoriaGrid {
     export function OnClickEliminar(id) {
         ComfirmAlert("Desea eliminar el registro?", "Eliminar", "warning", "#3085d6", "d33")
             .then(result => {
                 if (result.isConfirmed) {
                     Loading.fire("Borrando");
-                    App.AxiosProvider.OrdenEliminar(id).then(data => {
+                    App.AxiosProvider.CategoriaEliminar(id).then(data => {
                         Loading.close();
 
                         if (data.CodeError == 0) {

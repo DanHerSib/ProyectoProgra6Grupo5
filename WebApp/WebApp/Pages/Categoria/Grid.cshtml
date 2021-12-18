@@ -1,0 +1,49 @@
+﻿@page
+@model WebApp.Pages.Categoria.GridModel
+@{
+    ViewData["Title"] = "Listado Categorias";
+}
+
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-header">
+            Categoria
+        </div>
+        <div class="card-body">
+            <a class="btn btn-primary" asp-page="Edit">
+                <i class='bx bxs-add-to-queue'></i>
+            </a>
+            <div class="row">
+                <div class="col-12">
+                    <table id="GridView" class="table table-bordered table table-striped table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Id Categoria</th>
+                                <th>Descripcion</th>
+                            </tr>
+                        </thead>
+                        <tboby>
+                            @foreach (var item in Model.GridList)
+                            {
+                            <tr>
+                                <td>@item.IdCategoria</td>
+                                <td>@item.Descripcion</td>
+                                <td>
+                                    <a class="btn btn-primary" asp-page="Edit" asp-route-id="@item.IdCategoria"><i class='bx bx-edit-alt'></i></a>
+                                    <button type="button" class="btn btn-danger" onclick="CategoriaGrid.OnClickEliminar(@item.IdCategoria)">
+                                        <i class='bx bx-trash'></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            }
+                        </tboby>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script defer src="~/App/Categoria/Grid.js"></script>
+}

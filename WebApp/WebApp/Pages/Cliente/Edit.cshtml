@@ -1,0 +1,59 @@
+﻿@page
+@model WebApp.Pages.Cliente.EditModel
+@{
+    ViewData["Title"] = "Editar Cliente";
+}
+
+<div id="AppEdit" class="container" data-entity="@JsonSerializer.Serialize(Model.Entity)" v-cloak>
+    <div class="card">
+        <div class="card-header">
+            @(Model.id.HasValue? "Actualizar": "Nuevo Cliente")
+        </div>
+        <div class="card-body">
+            <form id="FormEdit" method="post">
+                <div class="form-group mb-3">
+                    <label for="Entity.Cedula" class="form-label">Cedula</label>
+                    <input type="text" class="form-control" asp-for="Entity.Cedula" v-model="Entity.Cedula" maxlength="25" required>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="Entity.NombreCliente" class="form-label">Nombre Cliente</label>
+                    <input type="text" class="form-control" asp-for="Entity.NombreCliente" v-model="Entity.NombreCliente" maxlength="25" required>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="Entity.Apellidos" class="form-label">Apellidos</label>
+                    <input readonly type="text" class="form-control" asp-for="Entity.Apellidos" v-model="Entity.Apellidos" maxlength="25" required>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="Entity.Direccion" class="form-label">Direccion</label>
+                    <input type="text" class="form-control" asp-for="Entity.Direccion" v-model="Entity.Direccion" maxlength="250" required>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="Entity.Fecha_Nacimiento" class="form-label">Fecha Nacimiento</label>
+                    <input type="text" class="form-control" asp-for="Entity.Fecha_Nacimiento" v-model="Entity.Fecha_Nacimiento" maxlength="10" required>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="Entity.Telefono" class="form-label">Telefono</label>
+                    <input readonly type="text" class="form-control" asp-for="Entity.Telefono" v-model="Entity.Telefono" maxlength="13" required>
+                </div>
+
+                <div class="row">
+                    <div class="col-4">
+                        <button type="button" @@click="Save" class="btn btn-primary">
+                            @(Model.id.HasValue? "Actualizar": "Agregar")
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script defer src="~/App/Cliente/Edit.js"></script>
+}

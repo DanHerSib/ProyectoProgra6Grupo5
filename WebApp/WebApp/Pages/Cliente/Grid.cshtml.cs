@@ -7,23 +7,22 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using WBL;
 using Entity;
 
-namespace WebApp.Pages.Orden
+namespace WebApp.Pages.Cliente
 {
     public class GridModel : PageModel
     {
-        private readonly IOrdenService ordenService;
-        public GridModel(IOrdenService ordenService)
+        private readonly IClienteService clienteService;
+        public GridModel(IClienteService clienteService)
         {
-            this.ordenService = ordenService;
+            this.clienteService = clienteService;
         }
 
-        public IEnumerable<OrdenEntity> GridList { get; set; } = new List<OrdenEntity>();
-
+        public IEnumerable<ClienteEntity> GridList { get; set; } = new List<ClienteEntity>();
         public async Task<IActionResult> OnGet()
         {
             try
             {
-                GridList = await ordenService.Get();
+                GridList = await clienteService.Get();
                 return Page();
             }
             catch (Exception ex)
@@ -36,7 +35,7 @@ namespace WebApp.Pages.Orden
         {
             try
             {
-                var result = await ordenService.Delete(new() { IdOrden = id });
+                var result = await clienteService.Delete(new() { Cedula = id });
                 return new JsonResult(result);
             }
             catch (Exception ex)

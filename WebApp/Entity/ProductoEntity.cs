@@ -15,5 +15,7 @@ namespace Entity
         public int? Cantidad_Disponible { get; set; }
         public string Caracteristicas { get; set; }
         public string Estado { get; set; }
+        public int CodeError { get; set; }
+        public string MsgError { get; set; }
     }
 }

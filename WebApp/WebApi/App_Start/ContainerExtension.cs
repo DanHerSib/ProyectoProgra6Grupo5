@@ -10,10 +10,8 @@ namespace WebApi
 {
     public static class ContainerExtension
     {
-
         public static IServiceCollection AddDIContainer(this IServiceCollection services)
         {
-
             services.AddSingleton<IDataAccess, DataAccess>();
             services.AddTransient<IProductoService, ProductoService>();
             services.AddTransient<IClienteService, ClienteService>();

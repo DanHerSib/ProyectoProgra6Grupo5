@@ -16,7 +16,7 @@
                 <div class="form-group mb-3">
                     <label for="Entity.IdCliente" class="form-label">Cliente</label>
                     <select asp-for="Entity.IdCliente" class="form-select" v-model="Entity.IdCliente"
-                            asp-items="@(new SelectList(Model.ClienteLista,"Cedula","Nombre","Apellidos","Direccion","Fecha_Nacimiento", "Telefono"))" required>
+                            asp-items="@(new SelectList(Model.ClienteLista,"Cedula","NombreCliente","Apellidos"))" required>
                     </select>
                 </div>
 
@@ -28,7 +28,7 @@
                 <div class="form-group mb-3">
                     <label for="Entity.IdProducto" class="form-label">Producto</label>
                     <select asp-for="Entity.IdProducto" class="form-select" v-model="Entity.IdProducto"
-                            asp-items="@(new SelectList(Model.ProductoLista,"IdProducto","IdCategoria","NombreProducto","Cantidad_Disponible","Caracteristicas","Estado"))" required>
+                            asp-items="@(new SelectList(Model.ProductoLista,"IdProducto","IdCategoria","NombreProducto","Precio"))" required>
                     </select>
                 </div>
 

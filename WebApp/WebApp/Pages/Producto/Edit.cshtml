@@ -2,8 +2,6 @@
 @model WebApp.Pages.Producto.EditModel
 @{
 }
-
-
 <div id="AppEdit" class="container" data-entity="@JsonSerializer.Serialize(Model.Entity)" v-cloak>
     <div class="card">
         <div class="card-header">
@@ -14,12 +12,17 @@
                 <input type="hidden" asp-for="Entity.IdProducto" v-model="Entity.IdProducto" />
                 <div class="form-group mb-3">
                     <label for="Entity.Categoria" class="form-label">Categoria</label>
-                    <input type="text" class="form-control" asp-for="Entity.Categoria" v-model="Entity.Categoria" maxlength="250" required>
+                    <input type="text" class="form-control" asp-for="Entity.IdCategoria" v-model="Entity.Categoria" maxlength="250" required>
                 </div>
 
                 <div class="form-group mb-3">
                     <label for="Entity.NombreProducto" class="form-label">Nombre Producto</label>
                     <input type="text" class="form-control" asp-for="Entity.NombreProducto" v-model="Entity.NombreProducto" maxlength="250" required>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="Entity.Precio" class="form-label">Precio</label>
+                    <input type="text" class="form-control" asp-for="Entity.Precio" v-model="Entity.Precio" maxlength="250" required>
                 </div>
 
                 <div class="form-group mb-3">
@@ -40,7 +43,7 @@
 
                 <div class="row">
                     <div class="col-4">
-                        <button type="submit"  class="btn btn-primary">
+                        <button type="submit" class="btn btn-primary">
                             @(Model.id.HasValue? "Actualizar": "Agregar")
                         </button>
                     </div>

@@ -1,6 +1,6 @@
 "use strict";
-var OrdenEdit;
-(function (OrdenEdit) {
+var ClienteEdit;
+(function (ClienteEdit) {
     var Entity = $("#AppEdit").data("entity");
     var Formulario = new Vue({
         data: {
@@ -11,11 +11,11 @@ var OrdenEdit;
             Save: function () {
                 if (BValidateData(this.Formulario)) {
                     Loading.fire("Guardando");
-                    App.AxiosProvider.OrdenGuardar(this.Entity).then(function (data) {
+                    App.AxiosProvider.ClienteGuardar(this.Entity).then(function (data) {
                         Loading.close();
                         if (data.CodeError == 0) {
                             Toast.fire({ title: "Se guardo correctamente", icon: "success" })
-                                .then(function () { return window.location.href = "Orden/Grid"; });
+                                .then(function () { return window.location.href = "Cliente/Grid"; });
                         }
                         else {
                             Toast.fire({ title: data.MsgError, icon: "error" });
@@ -32,5 +32,5 @@ var OrdenEdit;
         }
     });
     Formulario.$mount("#AppEdit");
-})(OrdenEdit || (OrdenEdit = {}));
+})(ClienteEdit || (ClienteEdit = {}));
 //# sourceMappingURL=Edit.js.map
