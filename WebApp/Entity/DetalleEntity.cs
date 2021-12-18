@@ -14,7 +14,7 @@ namespace Entity
             Ped = Ped ?? new PedidoEntity();
         }
 
-        public int? IdPedido { get; set; }
+        public int? IdDetalle { get; set; }
         public virtual PedidoEntity Ped { get; set; }
         public int? IdProducto { get; set; }
         public virtual ProductoEntity Produc { get; set; }

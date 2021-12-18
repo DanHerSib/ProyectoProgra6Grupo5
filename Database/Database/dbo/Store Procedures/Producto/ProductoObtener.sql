@@ -10,7 +10,8 @@ AS BEGIN
      E.Caracteristicas,
      E.Estado,
      --Categoria--
-     Cat.IdCategoria
+     Cat.IdCategoria,
+     Cat.Descripcion
     FROM dbo.Producto E
     INNER JOIN Categoria Cat
     ON E.IdCategoria = Cat.IdCategoria

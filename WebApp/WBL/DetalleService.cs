@@ -28,7 +28,7 @@ namespace WBL
         {
             try
             {
-                var result = sql.QueryAsync<DetalleEntity, ProductoEntity>("dbo.DetalleObtener","IdPedido, IdProducto");
+                var result = sql.QueryAsync<DetalleEntity, ProductoEntity>("dbo.DetalleObtener","IdDetalle, IdProducto");
                 return await result;
             }
             catch (Exception)
@@ -55,7 +55,7 @@ namespace WBL
             try
             {
                 var result = sql.QueryFirstAsync<DetalleEntity>("dbo.DetalleObtener", new
-                { entity.IdPedido });
+                { entity.IdDetalle });
                 return await result;
             }
             catch (Exception)
@@ -70,7 +70,7 @@ namespace WBL
             {
                 var result = sql.ExecuteAsync("dbo.DetalleInsertar", new
                 {
-                    entity.IdPedido,
+                    entity.Ped.IdPedido,
                     entity.IdProducto,
                     entity.Cantidad,
                     entity.Envio
@@ -89,7 +89,8 @@ namespace WBL
             {
                 var result = sql.ExecuteAsync("dbo.DetalleActualizar", new
                 {
-                    entity.IdPedido,
+                    entity.IdDetalle,
+                    entity.Ped.IdPedido,
                     entity.IdProducto,
                     entity.Cantidad,
                     entity.Envio
@@ -108,7 +109,7 @@ namespace WBL
             {
                 var result = sql.ExecuteAsync("dbo.DetalleEliminar", new
                 {
-                    entity.IdPedido,
+                    entity.IdDetalle,
                 });
                 return await result;
             }

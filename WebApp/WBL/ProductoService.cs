@@ -78,7 +78,7 @@ namespace WBL
             {
                 var result = sql.ExecuteAsync("dbo.ProductoInsertar", new
                 {
-                    entity.IdCategoria,
+                    entity.Cat.IdCategoria,
                     entity.NombreProducto,
                     entity.Precio,
                     entity.Cantidad_Disponible,
@@ -101,7 +101,7 @@ namespace WBL
                 var result = sql.ExecuteAsync("dbo.ProductoActualizar", new
                 {
                     entity.IdProducto,
-                    entity.IdCategoria,
+                    entity.Cat.IdCategoria,
                     entity.NombreProducto,
                     entity.Precio,
                     entity.Cantidad_Disponible,

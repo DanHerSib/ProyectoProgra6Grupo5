@@ -15,7 +15,7 @@
 
                 <div class="form-group mb-3">
                     <label for="Entity.IdCategoria" class="form-label">Categoria</label>
-                    <select asp-for="Entity.IdCategoria" class="form-select" v-model="Entity.IdCategoria"
+                    <select asp-for="Entity.Cat.IdCategoria" class="form-select" v-model="Entity.IdCategoria"
                             asp-items="@(new SelectList(Model.CategoriaLista,"IdCategoria","Descripcion"))" required>
                     </select>
                 </div>

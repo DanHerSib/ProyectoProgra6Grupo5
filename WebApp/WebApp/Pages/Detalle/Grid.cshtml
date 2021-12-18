@@ -18,8 +18,10 @@
                     <table id="GridView" class="table table-bordered table table-striped table table-hover">
                         <thead>
                             <tr>
+                                <th>Numero de Detalle</th>
                                 <th>Numero de Pedido</th>
                                 <th>Codigo Producto</th>
+                                <th>Nombre Producto</th>
                                 <th>Cantidad</th>
                                 <th>Envio</th>
                                 <th>Sub Total</th>
@@ -31,16 +33,18 @@
                             @foreach (var item in Model.GridList)
                             {
                             <tr>
-                                <td>@item.IdPedido</td>
+                                <td>@item.IdDetalle</td>
+                                <td>@item.Ped.IdPedido</td>
                                 <td>@item.Produc.IdProducto</td>
+                                <td>@item.Produc.NombreProducto</td>
                                 <td>@item.Cantidad</td>
                                 <td>@item.Envio</td>
                                 <td>@item.SubTotal</td>
                                 <td>@item.IVA</td>
                                 <td>@item.Total</td>
                                 <td>
-                                    <a class="btn btn-primary" asp-page="Edit" asp-route-id="@item.IdPedido"><i class='bx bx-edit-alt'></i></a>
-                                    <button type="button" class="btn btn-danger" onclick="DetalleGrid.OnClickEliminar(@item.IdPedido)">
+                                    <a class="btn btn-primary" asp-page="Edit" asp-route-id="@item.IdDetalle"><i class='bx bx-edit-alt'></i></a>
+                                    <button type="button" class="btn btn-danger" onclick="DetalleGrid.OnClickEliminar(@item.IdDetalle)">
                                         <i class='bx bx-trash'></i>
                                     </button>
                                 </td>
