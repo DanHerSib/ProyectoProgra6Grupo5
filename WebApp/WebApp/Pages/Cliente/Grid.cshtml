@@ -34,7 +34,7 @@
                                 <td>@item.NombreCliente</td>
                                 <td>@item.Apellidos</td>
                                 <td>@item.Direccion</td>
-                                <td>@item.Fecha_Nacimiento</td>
+                                <td>@item.Fecha_Nacimiento.ToString("dd/MM/yyyy")</td>
                                 <td>@item.Telefono</td>
                                 <td>
                                     <a class="btn btn-primary" asp-page="Edit" asp-route-id="@item.Cedula"><i class='bx bx-edit-alt'></i></a>

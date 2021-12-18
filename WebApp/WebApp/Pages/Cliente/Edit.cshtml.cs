@@ -20,8 +20,7 @@ namespace WebApp.Pages.Cliente
         [BindProperty]
         [FromBody]
         public ClienteEntity Entity { get; set; } = new ClienteEntity();
-        public IEnumerable<ClienteEntity> ClienteLista { get; set; } = new List<ClienteEntity>();
-        [BindProperty(SupportsGet = true)]
+
         public int? id { get; set; }
         public async Task<IActionResult> OnGet()
         {
@@ -31,7 +30,6 @@ namespace WebApp.Pages.Cliente
                 {
                     Entity = await clienteService.GetById(new() { Cedula = id });
                 }
-                ClienteLista = await clienteService.GetLista();
                 return Page();
             }
             catch (Exception ex)

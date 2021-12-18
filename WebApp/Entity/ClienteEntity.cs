@@ -12,7 +12,7 @@ namespace Entity
         public string NombreCliente { get; set; }
         public string Apellidos { get; set; }
         public string Direccion { get; set; }
-        public DateTime Fecha_Nacimiento { get; set; } = DateTime.Now;
+        public DateTime Fecha_Nacimiento { get; set; }
         public string Telefono { get; set; }
     }
 }

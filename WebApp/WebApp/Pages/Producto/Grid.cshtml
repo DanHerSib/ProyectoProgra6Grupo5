@@ -1,26 +1,25 @@
 ﻿@page
 @model WebApp.Pages.Producto.GridModel
 @{
+    ViewData["Title"] = "Listado Productos";
 }
 
 <div class="container-fluid">
-
     <div class="card">
         <div class="card-header">
             Producto
         </div>
         <div class="card-body">
-
             <a class="btn btn-primary" asp-page="Edit">
                 <i class='bx bxs-add-to-queue'></i>
             </a>
-
             <div class="row">
                 <div class="col-12">
                     <table id="GridView" class="table table-bordered table table-striped table table-hover">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>Id Producto</th>
+                                <th>Id Categoria</th>
                                 <th>Categoria</th>
                                 <th>Nombre Producto</th>
                                 <th>Precio</th>
@@ -35,6 +34,7 @@
                             <tr>
                                 <td>@item.IdProducto</td>
                                 <td>@item.IdCategoria</td>
+                                <td>@item.Cat.Descripcion</td>
                                 <td>@item.NombreProducto</td>
                                 <td>@item.Precio</td>
                                 <td>@item.Cantidad_Disponible</td>
@@ -42,7 +42,6 @@
                                 <td>@item.Estado</td>
                                 <td>
                                     <a class="btn btn-primary" asp-page="Edit" asp-route-id="@item.IdProducto"><i class='bx bx-edit-alt'></i></a>
-
                                     <button type="button" class="btn btn-danger" onclick="ProductoGrid.OnClickEliminar(@item.IdProducto)">
                                         <i class='bx bx-trash'></i>
                                     </button>
@@ -51,21 +50,12 @@
                             }
                         </tboby>
                     </table>
-
                 </div>
             </div>
-
-
-
         </div>
     </div>
-
-
 </div>
 
 @section Scripts{
-    <script>
-        var MensajeApp = "@Html.Raw(Model.Mensaje)";
-    </script>
     <script defer src="~/App/Producto/Grid.js"></script>
 }

@@ -8,6 +8,11 @@ namespace Entity
 {
     public class ProductoEntity
     {
+        public ProductoEntity()
+        {
+            Cat = Cat ?? new CategoriaEntity();
+        }
+        public virtual CategoriaEntity Cat { get; set; }
         public int? IdProducto { get; set; }
         public int? IdCategoria { get; set; }
         public string NombreProducto { get; set; }
