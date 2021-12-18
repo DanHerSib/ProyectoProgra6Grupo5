@@ -1,13 +1,13 @@
 ﻿@page
-@model WebApp.Pages.Pedido.GridModel
+@model WebApp.Pages.Detalle.GridModel
 @{
-    ViewData["Title"] = "Listado Pedidos";
+    ViewData["Title"] = "Listado Detalles";
 }
 
 <div class="container-fluid">
     <div class="card">
         <div class="card-header">
-            Pedido
+            Detalle
         </div>
         <div class="card-body">
             <a class="btn btn-primary" asp-page="Edit">
@@ -19,8 +19,12 @@
                         <thead>
                             <tr>
                                 <th>Numero de Pedido</th>
-                                <th>Cedula Cliente</th>
-                                <th>Fecha Pedido</th>
+                                <th>Codigo Producto</th>
+                                <th>Cantidad</th>
+                                <th>Envio</th>
+                                <th>Sub Total</th>
+                                <th>IVA</th>
+                                <th>Total</th>
                             </tr>
                         </thead>
                         <tboby>
@@ -28,11 +32,15 @@
                             {
                             <tr>
                                 <td>@item.IdPedido</td>
-                                <td>@item.Client.Cedula</td>
-                                <td>@item.FechaPedido.ToString("dd/MM/yyyy")</td>
+                                <td>@item.Produc.IdProducto</td>
+                                <td>@item.Cantidad</td>
+                                <td>@item.Envio</td>
+                                <td>@item.SubTotal</td>
+                                <td>@item.IVA</td>
+                                <td>@item.Total</td>
                                 <td>
                                     <a class="btn btn-primary" asp-page="Edit" asp-route-id="@item.IdPedido"><i class='bx bx-edit-alt'></i></a>
-                                    <button type="button" class="btn btn-danger" onclick="PedidoGrid.OnClickEliminar(@item.IdPedido)">
+                                    <button type="button" class="btn btn-danger" onclick="DetalleGrid.OnClickEliminar(@item.IdPedido)">
                                         <i class='bx bx-trash'></i>
                                     </button>
                                 </td>
@@ -47,5 +55,5 @@
 </div>
 
 @section Scripts{
-    <script defer src="~/App/Pedido/Grid.js"></script>
+    <script defer src="~/App/Detalle/Grid.js"></script>
 }

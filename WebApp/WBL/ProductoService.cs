@@ -40,7 +40,8 @@ namespace WBL
                 throw;
             }
         }
-
+       
+        //Metodo Lista
         public async Task<IEnumerable<ProductoEntity>> GetLista()
         {
             try

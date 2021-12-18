@@ -7,20 +7,24 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using WBL;
 
-namespace WebApp.Pages.Cliente
+namespace WebApp.Pages.Detalle
 {
     public class EditModel : PageModel
     {
-        private readonly IClienteService clienteService;
-        public EditModel(IClienteService clienteService)
+        private readonly IDetalleService detalleService;
+        private readonly IProductoService productoService;
+        public EditModel(IDetalleService detalleService, IProductoService productoService)
         {
-            this.clienteService = clienteService;
+            this.detalleService = detalleService;
+            this.productoService = productoService;
         }
 
         [BindProperty]
         [FromBody]
-        public ClienteEntity Entity { get; set; } = new ClienteEntity();
-        public IEnumerable<ClienteEntity> ClienteLista { get; set; } = new List<ClienteEntity>();
+        public DetalleEntity Entity { get; set; } = new DetalleEntity();
+
+        public IEnumerable<ProductoEntity> ProductoLista { get; set; } = new List<ProductoEntity>();
+        [BindProperty(SupportsGet = true)]
         public int? id { get; set; }
         public async Task<IActionResult> OnGet()
         {
@@ -28,9 +32,9 @@ namespace WebApp.Pages.Cliente
             {
                 if (id.HasValue)
                 {
-                    Entity = await clienteService.GetById(new() { Cedula = id });
+                    Entity = await detalleService.GetById(new() { IdPedido = id });
                 }
-                ClienteLista = await clienteService.GetLista();
+                ProductoLista = await productoService.GetLista();
                 return Page();
             }
             catch (Exception ex)
@@ -44,13 +48,13 @@ namespace WebApp.Pages.Cliente
             try
             {
                 var result = new DBEntity();
-                if (Entity.Cedula.HasValue)
+                if (Entity.IdPedido.HasValue)
                 {
-                    result = await clienteService.Update(Entity);
+                    result = await detalleService.Update(Entity);
                 }
                 else
                 {
-                    result = await clienteService.Create(Entity);
+                    result = await detalleService.Create(Entity);
                 }
                 return new JsonResult(result);
             }

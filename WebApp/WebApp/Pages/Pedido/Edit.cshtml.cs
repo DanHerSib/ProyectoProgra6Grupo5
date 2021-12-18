@@ -12,21 +12,16 @@ namespace WebApp.Pages.Pedido
     public class EditModel : PageModel
     {
         private readonly IPedidoService pedidoService;
-        private readonly IProductoService productoService;
         private readonly IClienteService clienteService;
-        public EditModel(IPedidoService pedidoService, IProductoService productoService, IClienteService clienteService)
+        public EditModel(IPedidoService pedidoService, IClienteService clienteService)
         {
             this.pedidoService = pedidoService;
-            this.productoService = productoService;
             this.clienteService = clienteService;
         }
 
         [BindProperty]
         [FromBody]
         public PedidoEntity Entity { get; set; } = new PedidoEntity();
-
-        public IEnumerable<ProductoEntity> ProductoLista { get; set; } = new List<ProductoEntity>();
-        [BindProperty(SupportsGet = true)]
         public IEnumerable<ClienteEntity> ClienteLista { get; set; } = new List<ClienteEntity>();
         [BindProperty(SupportsGet = true)]
         public int? id { get; set; }
@@ -38,7 +33,6 @@ namespace WebApp.Pages.Pedido
                 {
                     Entity = await pedidoService.GetById(new() { IdPedido = id });
                 }
-                ProductoLista = await productoService.GetLista();
                 ClienteLista = await clienteService.GetLista();
                 return Page();
             }

@@ -6,29 +6,29 @@ using System.Threading.Tasks;
 
 namespace WBL
 {
-    public interface IPedidoService
+    public interface IDetalleService
     {
-        Task<DBEntity> Create(PedidoEntity entity);
-        Task<DBEntity> Delete(PedidoEntity entity);
-        Task<IEnumerable<PedidoEntity>> Get();
-        Task<PedidoEntity> GetById(PedidoEntity entity);
-        Task<DBEntity> Update(PedidoEntity entity);
-        Task<IEnumerable<PedidoEntity>> GetLista();
+        Task<DBEntity> Create(DetalleEntity entity);
+        Task<DBEntity> Delete(DetalleEntity entity);
+        Task<IEnumerable<DetalleEntity>> Get();
+        Task<DetalleEntity> GetById(DetalleEntity entity);
+        Task<DBEntity> Update(DetalleEntity entity);
+        Task<IEnumerable<DetalleEntity>> GetLista();
     }
-    public class PedidoService : IPedidoService
+    public class DetalleService : IDetalleService
     {
         private readonly IDataAccess sql;
-        public PedidoService(IDataAccess _sql)
+        public DetalleService(IDataAccess _sql)
         {
             sql = _sql;
         }
         #region MetodosCrud
         //Metodo Get
-        public async Task<IEnumerable<PedidoEntity>> Get()
+        public async Task<IEnumerable<DetalleEntity>> Get()
         {
             try
             {
-                var result = sql.QueryAsync<PedidoEntity, ClienteEntity>("dbo.PedidoObtener", "IdPedido, IdCliente");
+                var result = sql.QueryAsync<DetalleEntity, ProductoEntity>("dbo.DetalleObtener", "IdPedido, IdProducto");
                 return await result;
             }
             catch (Exception)
@@ -37,11 +37,11 @@ namespace WBL
             }
         }
         //Metodo Get Lista
-        public async Task<IEnumerable<PedidoEntity>> GetLista()
+        public async Task<IEnumerable<DetalleEntity>> GetLista()
         {
             try
             {
-                var result = sql.QueryAsync<PedidoEntity>("PedidoLista");
+                var result = sql.QueryAsync<DetalleEntity>("DetalleLista");
                 return await result;
             }
             catch (Exception EX)
@@ -50,11 +50,11 @@ namespace WBL
             }
         }
         //Metodo GetById
-        public async Task<PedidoEntity> GetById(PedidoEntity entity)
+        public async Task<DetalleEntity> GetById(DetalleEntity entity)
         {
             try
             {
-                var result = sql.QueryFirstAsync<PedidoEntity>("dbo.PedidoObtener", new
+                var result = sql.QueryFirstAsync<DetalleEntity>("dbo.DetalleObtener", new
                 { entity.IdPedido });
                 return await result;
             }
@@ -64,14 +64,16 @@ namespace WBL
             }
         }
         //Metodo Create
-        public async Task<DBEntity> Create(PedidoEntity entity)
+        public async Task<DBEntity> Create(DetalleEntity entity)
         {
             try
             {
-                var result = sql.ExecuteAsync("dbo.PedidoInsertar", new
+                var result = sql.ExecuteAsync("dbo.DetalleInsertar", new
                 {
-                    entity.IdCliente,
-                    entity.FechaPedido
+                    entity.IdPedido,
+                    entity.IdProducto,
+                    entity.Cantidad,
+                    entity.Envio
                 });
                 return await result;
             }
@@ -81,15 +83,16 @@ namespace WBL
             }
         }
         //Metodo Update
-        public async Task<DBEntity> Update(PedidoEntity entity)
+        public async Task<DBEntity> Update(DetalleEntity entity)
         {
             try
             {
-                var result = sql.ExecuteAsync("dbo.PedidoActualizar", new
+                var result = sql.ExecuteAsync("dbo.DetalleActualizar", new
                 {
                     entity.IdPedido,
-                    entity.IdCliente,
-                    entity.FechaPedido
+                    entity.IdProducto,
+                    entity.Cantidad,
+                    entity.Envio
                 });
                 return await result;
             }
@@ -99,11 +102,11 @@ namespace WBL
             }
         }
         //Metodo Delete
-        public async Task<DBEntity> Delete(PedidoEntity entity)
+        public async Task<DBEntity> Delete(DetalleEntity entity)
         {
             try
             {
-                var result = sql.ExecuteAsync("dbo.PedidoEliminar", new
+                var result = sql.ExecuteAsync("dbo.DetalleEliminar", new
                 {
                     entity.IdPedido,
                 });
