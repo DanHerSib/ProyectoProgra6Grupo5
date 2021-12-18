@@ -20,6 +20,8 @@
                             <tr>
                                 <th>Numero de Pedido</th>
                                 <th>Cedula Cliente</th>
+                                <th>Nombre Cliente</th>
+                                <th>Apellidos</th>
                                 <th>Fecha Pedido</th>
                             </tr>
                         </thead>
@@ -29,6 +31,8 @@
                             <tr>
                                 <td>@item.IdPedido</td>
                                 <td>@item.Client.Cedula</td>
+                                <td>@item.Client.NombreCliente</td>
+                                <td>@item.Client.Apellidos</td>
                                 <td>@item.FechaPedido.ToString("dd/MM/yyyy")</td>
                                 <td>
                                     <a class="btn btn-primary" asp-page="Edit" asp-route-id="@item.IdPedido"><i class='bx bx-edit-alt'></i></a>
