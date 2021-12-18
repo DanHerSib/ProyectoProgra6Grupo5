@@ -1,5 +1,4 @@
 ﻿CREATE PROCEDURE [dbo].[CategoriaInsertar]
-	@IdCategoria int,
 	@Descripcion varchar(50)
 AS BEGIN
 SET NOCOUNT ON
@@ -8,12 +7,10 @@ BEGIN TRANSACTION TRASA
     BEGIN TRY
 	INSERT INTO dbo.Categoria
 	(
-	IdCategoria,
 	Descripcion
 	)
 	VALUES
 	(
-	@IdCategoria,
 	@Descripcion
 	)
   COMMIT TRANSACTION TRASA
