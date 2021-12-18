@@ -19,6 +19,7 @@ INNER JOIN #PedidoDetalleTemp TM
     ON P.IdDetalle= TM.IdDetalle  
     
 ----INSERTAR DATOS---
+SET IDENTITY_INSERT dbo.PedidoDetalle ON
 INSERT INTO dbo.PedidoDetalle(
 IdDetalle, IdPedido, IdProducto, Cantidad, Envio)
 SELECT
@@ -29,4 +30,5 @@ EXCEPT
 SELECT
 IdDetalle, IdPedido, IdProducto, Cantidad, Envio
 FROM dbo.PedidoDetalle
+SET IDENTITY_INSERT dbo.PedidoDetalle OFF
 GO
