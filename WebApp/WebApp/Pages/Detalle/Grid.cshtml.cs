@@ -35,7 +35,7 @@ namespace WebApp.Pages.Detalle
         {
             try
             {
-                var result = await detalleService.Delete(new() { IdPedido = id });
+                var result = await detalleService.Delete(new() { IdDetalle = id });
                 return new JsonResult(result);
             }
             catch (Exception ex)

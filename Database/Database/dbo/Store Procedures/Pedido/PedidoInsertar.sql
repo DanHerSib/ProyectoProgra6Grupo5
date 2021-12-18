@@ -1,5 +1,4 @@
 ﻿CREATE PROCEDURE [dbo].[PedidoInsertar]
-	@IdPedido int, 
 	@IdCliente int, 
 	@FechaPedido Datetime
 
@@ -8,9 +7,9 @@ SET NOCOUNT ON
   BEGIN TRANSACTION TRASA
     BEGIN TRY
 	INSERT INTO dbo.Pedido
-	(IdPedido, IdCliente, FechaPedido)
+	(IdCliente, FechaPedido)
 	VALUES
-	(@IdPedido, @IdCliente, @FechaPedido)
+	(@IdCliente, @FechaPedido)
 
   COMMIT TRANSACTION TRASA
   SELECT 0 AS CodeError, '' AS MsgError

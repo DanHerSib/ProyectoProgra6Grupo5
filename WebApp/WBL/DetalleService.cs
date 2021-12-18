@@ -70,7 +70,7 @@ namespace WBL
             {
                 var result = sql.ExecuteAsync("dbo.DetalleInsertar", new
                 {
-                    entity.Ped.IdPedido,
+                    entity.IdPedido,
                     entity.IdProducto,
                     entity.Cantidad,
                     entity.Envio
@@ -90,7 +90,7 @@ namespace WBL
                 var result = sql.ExecuteAsync("dbo.DetalleActualizar", new
                 {
                     entity.IdDetalle,
-                    entity.Ped.IdPedido,
+                    entity.IdPedido,
                     entity.IdProducto,
                     entity.Cantidad,
                     entity.Envio

@@ -13,6 +13,7 @@ namespace Entity
             Cat = Cat ?? new CategoriaEntity();
         }
         public int? IdProducto { get; set; }
+        public int? IdCategoria { get; set; }
         public virtual CategoriaEntity Cat { get; set; }
         public string NombreProducto { get; set; }
         public float Precio { get; set; }
